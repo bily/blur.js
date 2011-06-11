@@ -1,0 +1,30 @@
+blur.js - A basic Javascript 3D engine for HTML5 Canvas. 
+--------------------------------------------------------
+
+* This engine is in its early stages and still very basic *
+
+Blur.js supports basic primitives like Cube, Line3D and much more. To see a the engine in action go to http://www.harrynorthover.com, or visit https://github.com/harrynorthover/canvas-3d-demos for more. 
+
+Usage
+-----
+
+A basic setup with the blur.js engine is:
+
+var camera = new BLUR.Camera3D( window.innerWidth - 20, window.innerHeight - 20);
+var scene = new BLUR.Scene3D();
+var renderer = new BLUR.CanvasRenderer( scene, camera );
+
+function init() {
+	var plane = new BLUR.Plane( new BLUR.Vector(100, 100, 0), new BLUR.Vector(-100, 100, 0), new BLUR.Vector(-100, -100, 0), new BLUR.Vector(100, -100, 0) );
+
+	scene.addObject(plane);
+
+	setInterval(render, 10);
+}
+
+function render()
+{
+	renderer.render( scene, camera );
+}
+
+init();
