@@ -1,11 +1,5 @@
 /*
  * Author: Harry Northover
- * 			- harrynorthover.com
- * Description:
- * The scene used to hold all 3D objects.
- *
- * Edits:
- * None.
  */
 
 BLUR.Scene3D = function () {
@@ -19,5 +13,13 @@ BLUR.Scene3D = function () {
 		var index = this.objects.indexOf(object);
 		if(index != null)
 			this.objects.splice(index, 1);
+	};
+
+	/*
+	 * this.clear - Deletes all scene objects.
+	 */
+	this.clear = function( ) {
+		for( var i = 0; i < this.objects.length; ++i )
+			this.removeObject(i);
 	};
 };

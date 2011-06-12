@@ -36,7 +36,7 @@ BLUR.CanvasRenderer = function ( scene, camera ) {
 			case 'BLUR.Particle':
 				this.drawParticle(currentObj);
 				break;
-			case 'BLUR.Line3D':
+			case 'BLUR.Line':
 				this.drawLine(currentObj);
 				break;
 			case 'BLUR.Plane':
@@ -47,7 +47,9 @@ BLUR.CanvasRenderer = function ( scene, camera ) {
 	};
 
 	this.drawTriangle = function( tri ) {
-
+		/*
+		 * TODO: Finish drawTriangle.
+		 */
 	};
 
 	this.drawParticle = function( particle ) {
@@ -71,13 +73,15 @@ BLUR.CanvasRenderer = function ( scene, camera ) {
 			_ctx.beginPath();
 			_ctx.arc( x, y, particle.radius, 0, Math.PI * 2, true );
 			_ctx.closePath();
-			_ctx.fillStyle 	= particle.material.toString();
+			_ctx.fillStyle = particle.material.toString();
 			_ctx.fill();
 		}
 	};
 
 	this.drawLine = function( line ) {
-		points = [line.point1.convertTo2D( _fieldOfV ), line.point2.convertTo2D( _fieldOfV )];
+		points = [];
+		points.push(line.position.convertTo2D( _fieldOfV ));
+		points.push(line.to.convertTo2D( _fieldOfV ));
 
 		_ctx.lineWidth = line.thickness;
 		_ctx.beginPath();
