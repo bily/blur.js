@@ -25,14 +25,19 @@ var scene = new BLUR.Scene3D();
 var renderer = new BLUR.CanvasRenderer( scene, camera );
 
 function init() {
-	var l = new BLUR.Line( 5 );
+	var l = new BLUR.Line( 1 );
 	l.setPosition( new BLUR.Vector( -200,100,0 ), new BLUR.Vector( 200,100,0 ) );
-	l.position = new BLUR.Vector( 100,100,0 );
+	l.material.alpha = 0.2;
 
-	var p = new BLUR.Particle( 50 );
-	l.position = new BLUR.Vector( -200,0,0 );
+	var p1 = new BLUR.Particle( 3 );
+	p1.position = new BLUR.Vector( -200,100,0 );
 
-	l.addChild(p);
+	var p2 = new BLUR.Particle( 10 );
+	p2.position = new BLUR.Vector( 200,100,0 );
+
+	// add multiple objects at the same time.
+	l.addChild([p1, p2]);
+
 	scene.addObject(l);
 
 	setInterval(render, 10);
@@ -40,13 +45,12 @@ function init() {
 
 function render()
 {
-	renderer.render( scene, camera );
 	for( var i = 0; i < scene.objects.length; ++i ) {
-		if(scene.objects[i].type == 'BLUR.Line') {
-			console.log('line...');
-			scene.objects[i].translateY(1);
-		}
+		if(scene.objects[i].type == 'BLUR.Line')
+			scene.objects[i].rotateY(1);
 	}
+
+	renderer.render( scene, camera );
 }
 
 init();

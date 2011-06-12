@@ -13,11 +13,20 @@ BLUR.Object3D = function() {
 	this.matrix = new BLUR.Matrix4();
 
 	this.rotateX = function( a ) {
+		if(this.type == 'BLUR.Particle')
+			console.log( a );
+
 		this.position.rotateX( a );
+
+		for(var i = 0; i < this.children.length; ++i )
+			this.children[i].rotateX( a );
 	};
 
 	this.rotateY = function( a ) {
 		this.position.rotateY( a );
+
+		for(var i = 0; i < this.children.length; ++i )
+			this.children[i].rotateY( a );
 	};
 
 	this.rotateZ = function( a ) {
@@ -74,8 +83,13 @@ BLUR.Object3D = function() {
 	};
 
 	this.addChild = function( c ) {
-		if(c != null && c != undefined)
+		if( c instanceof Array )
+		{
+			for( var i = 0; i < c.length; ++i )
+				this.children.push(c[i]);
+		} else if (c != null && c != undefined) {
 			this.children.push(c);
+		}
 	};
 
 	this.toString = function() {
@@ -84,7 +98,8 @@ BLUR.Object3D = function() {
 								", visible: " + this.visible.toString() +
 								", rotation: " + this.rotation.toString() +
 								", scale: " + this.scale.toString() +
-								", matrix: " + this.matrix.toString() + "]";
+								", matrix: " + this.matrix.toString() +
+								", children: " + this.children.length + "]";
 	};
 
 	this.type = 'BLUR.Object3D';

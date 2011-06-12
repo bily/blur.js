@@ -8,8 +8,16 @@ BLUR.Scene3D = function () {
 	this.objects = [];
 
 	this.addObject = function( object ) {
-		object.parent = this;
-		this.objects.push(object);
+		if( object instanceof Array )
+		{
+			for( var i = 0; i < object.length; ++i ) {
+				object[i].parent = this;
+				this.objects.push(object[i]);
+			}
+		} else if (object != null && object != undefined) {
+			object.parent = this;
+			this.objects.push(object);
+		}
 	};
 
 	this.removeObject = function( object ) {

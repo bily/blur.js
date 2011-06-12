@@ -15,50 +15,49 @@ BLUR.Vector = function(x,y,z) {
 	};
 
 	this.rotateY = function ( angle ) {
-		cosRY = Math.cos(angle * RADIANS);
-		sinRY = Math.sin(angle * RADIANS);
-
 		var tempz = this.z;
 		var tempx = this.x;
 
-		this.x = ( tempx * cosRY ) + ( tempz * sinRY );
-		this.z = ( tempx * -sinRY ) + ( tempz * cosRY );
+		this.x = ( tempx * Math.cos(angle * RADIANS) ) + ( tempz * Math.sin(angle * RADIANS) );
+		this.z = ( tempx * -Math.sin(angle * RADIANS) ) + ( tempz * Math.cos(angle * RADIANS) );
 	};
 
 	this.rotateX = function ( angle ) {
+		console.log('Vector.rotateY - ' + angle);
+
 		var tempY = this.y;
 		var tempZ = this.z;
 
 		this.y = ( tempY * Math.cos(angle * RADIANS) ) - ( tempZ * Math.sin(angle * RADIANS) );
 		this.z = ( tempY * Math.sin(angle * RADIANS) ) + ( tempZ * Math.cos(angle * RADIANS) );
 	};
-	
+
 	this.rotate = function( axis, amount ) {
 		switch(axis) {
 			case 'x':
 				var tempY = this.y;
 				var tempZ = this.z;
-				
+
 				this.y = ( tempY * Math.cos(amount * RADIANS) ) - ( tempZ * Math.sin(amount * RADIANS) );
 				this.z = ( tempY * Math.sin(amount * RADIANS) ) + ( tempZ * Math.cos(amount * RADIANS) );
 				break;
 			case 'y':
 				var tempz = this.z;
 				var tempx = this.x;
-	
+
 				this.x = ( tempx * Math.cos(amount * RADIANS) ) + ( tempz * Math.sin(amount * RADIANS) );
 				this.z = ( tempx * -Math.sin(amount * RADIANS) ) + ( tempz * Math.cos(amount * RADIANS) );
 				break;
 			case 'z':
 				/*
-				 * TODO: Write 'z' rotation functionality. 
+				 * TODO: Write 'z' rotation functionality.
 				 */
 				break;
 			default:
 				alert('[BLUR.Vector] - Error: Please specify a valid axis for rotation, "' + axis + '" is not valid. ');
 		}
 	};
-	
+
 	this.round = function() {
 		this.x = Math.round(x);
 		this.y = Math.round(y);
@@ -76,9 +75,9 @@ BLUR.Vector = function(x,y,z) {
 		this.y += v.y;
 		this.z += v.z;
 	};
-	
+
 	/*
-	 * this.normalise - Makes the length = 1, by dividing x,y,z by the length. 
+	 * this.normalise - Makes the length = 1, by dividing x,y,z by the length.
 	 */
 	this.normalise = function() {
 		tempX = this.x;
@@ -93,13 +92,13 @@ BLUR.Vector = function(x,y,z) {
 
 		return this;
 	};
-	
+
 	/*
-	 * this.toString - Used to output all properties of the vector. 
+	 * this.toString - Used to output all properties of the vector.
 	 */
 	this.toString = function() {
 		return this.type + " [x: " + this.x + " , y: " + this.y + " z: " + this.z + "]";
 	};
-	
+
 	this.type = 'BLUR.Vector';
 };
