@@ -25,11 +25,6 @@ var scene = new BLUR.Scene3D();
 var renderer = new BLUR.CanvasRenderer( scene, camera );
 
 function init() {
-	/*var l = new BLUR.Line( 10 );
-	l.setPosition(  new BLUR.Vector(100, 200, 0), new BLUR.Vector(-100, 200, 0)  );
-	l.material = new BLUR.BasicColorMaterial( new BLUR.Color(32,178,170), 1 );
-	scene.addObject(l);*/
-
 	for( var i = 0; i < 100; ++i ) {
 		var p = new BLUR.Particle( 5 );
 		p.position = new BLUR.Vector( r(100,-100), r(100,-100), r(100,-100) );
