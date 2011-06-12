@@ -22,26 +22,28 @@ BLUR.CanvasRenderer = function ( scene, camera ) {
 
 
 	this.render = function( scene, camera ) {
-		//_canvas.width 	= _WIDTH;
-		//_canvas.height 	= _HEIGHT;
-
 		// if autoclear is set to true, clear the screen before the next scene is rendered.
-		if(_autoClear) this.clear();
+		if(_autoClear)
+			this.clear();
 
-		for(var i = 0; i < scene.objects.length; ++i)
-		{
-			var currentObj = scene.objects[i];
-			switch(currentObj.type)
+		if(scene.visible) {
+			for(var i = 0; i < scene.objects.length; ++i)
 			{
-			case 'BLUR.Particle':
-				this.drawParticle(currentObj);
-				break;
-			case 'BLUR.Line':
-				this.drawLine(currentObj);
-				break;
-			case 'BLUR.Plane':
-				this.drawFace(currentObj);
-				break;
+				var currentObj = scene.objects[i];
+				if(currentObj.visible) {
+					switch(currentObj.type)
+					{
+					case 'BLUR.Particle':
+						this.drawParticle(currentObj);
+						break;
+					case 'BLUR.Line':
+						this.drawLine(currentObj);
+						break;
+					case 'BLUR.Plane':
+						this.drawFace(currentObj);
+						break;
+					}
+				}
 			}
 		}
 	};

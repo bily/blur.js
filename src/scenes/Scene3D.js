@@ -3,9 +3,12 @@
  */
 
 BLUR.Scene3D = function () {
-	this.objects 	= [];
+	BLUR.Object3D.call();
+
+	this.objects = [];
 
 	this.addObject = function( object ) {
+		object.parent = this;
 		this.objects.push(object);
 	};
 
@@ -18,8 +21,11 @@ BLUR.Scene3D = function () {
 	/*
 	 * this.clear - Deletes all scene objects.
 	 */
-	this.clear = function( ) {
+	this.clear = function() {
 		for( var i = 0; i < this.objects.length; ++i )
 			this.removeObject(i);
 	};
 };
+
+BLUR.Scene3D.prototype = new BLUR.Object3D();
+BLUR.Scene3D.prototype.constructor = BLUR.Scene3D;
