@@ -30,20 +30,31 @@ BLUR.CanvasRenderer = function ( scene, camera ) {
 			for(var i = 0; i < scene.objects.length; ++i)
 			{
 				var currentObj = scene.objects[i];
-				if(currentObj.visible) {
-					switch(currentObj.type)
-					{
-					case 'BLUR.Particle':
-						this.drawParticle(currentObj);
-						break;
-					case 'BLUR.Line':
-						this.drawLine(currentObj);
-						break;
-					case 'BLUR.Plane':
-						this.drawFace(currentObj);
-						break;
-					}
-				}
+
+				// render the object.
+				this.renderObject(currentObj);
+
+				// check for children and render any.
+				if(currentObj.children.length > 0 && currentObj.visible)
+					for( var j = 0; j < currentObj.children.length; ++j )
+						this.renderObject(currentObj.children[j]);
+			}
+		}
+	};
+
+	this.renderObject = function( o ) {
+		if(o.visible) {
+			switch(o.type)
+			{
+				case 'BLUR.Particle':
+					this.drawParticle(o);
+					break;
+				case 'BLUR.Line':
+					this.drawLine(o);
+					break;
+				case 'BLUR.Plane':
+					this.drawFace(o);
+					break;
 			}
 		}
 	};

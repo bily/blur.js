@@ -1,7 +1,7 @@
 BLUR.Line = function( t ) {
 	BLUR.Object3D.call();
 
-	this.to = new BLUR.Vector( 100, 100, 100 );
+	this.to = new BLUR.Vector( 0, 0, 0 );
 	this.thickness = t == undefined ? 1 : t;
 
 	this.setPosition = function( from, to ) {

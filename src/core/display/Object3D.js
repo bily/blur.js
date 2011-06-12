@@ -31,14 +31,23 @@ BLUR.Object3D = function() {
 		switch (axis) {
 		case 'x':
 			this.position.x += amount;
+			for( var i = 0; i < this.children.length; ++i) {
+				this.children[i].position.x += amount;
+			}
 			break;
 
 		case 'y':
 			this.position.y += amount;
+			for( var i = 0; i < this.children.length; ++i) {
+				this.children[i].position.y += amount;
+			}
 			break;
 
 		case 'z':
 			this.position.z += amount;
+			for( var i = 0; i < this.children.length; ++i) {
+				this.children[i].position.z += amount;
+			}
 			break;
 		}
 	};
