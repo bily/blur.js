@@ -8,7 +8,10 @@ var mouseY = 0;
 var shouldDraw = false;
 
 function init() {
-	var plane = new BLUR.Plane( new BLUR.Vector(100, 100, 0), new BLUR.Vector(-100, 100, 0), new BLUR.Vector(-100, -100, 0), new BLUR.Vector(100, -100, 0) );
+	var plane = new BLUR.Plane( new BLUR.Vector(100, 100, 0), 
+								new BLUR.Vector(-100, 100, 0), 
+								new BLUR.Vector(-100, -100, 0), 
+								new BLUR.Vector(100, -100, 0) );
 	scene.addObject(plane);
 	setInterval(render, 10);
 }
@@ -22,7 +25,7 @@ function render()
 			scene.objects[i].rotateX((((window.innerHeight / 2) - mouseY) * .02));
 		}
 	}
-
+	
 	renderer.render( scene, camera );
 }
 

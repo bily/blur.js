@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="examples/circles/js"/>
+	<classpathentry kind="src" path="examples/cube/js"/>
+	<classpathentry kind="src" path="examples/plane/js"/>
+	<classpathentry excluding="core/display/|materials/|core/math/|camera/|objects/primitives/|renderers/|scenes/" kind="src" path="src"/>
+	<classpathentry kind="src" path="src/camera"/>
+	<classpathentry kind="src" path="src/core/display"/>
+	<classpathentry kind="src" path="src/core/math"/>
+	<classpathentry kind="src" path="src/materials"/>
+	<classpathentry kind="src" path="src/objects/primitives"/>
+	<classpathentry kind="src" path="src/renderers"/>
+	<classpathentry kind="src" path="src/scenes"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

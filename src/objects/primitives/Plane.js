@@ -2,7 +2,7 @@ BLUR.Plane = function( p1, p2, p3, p4 ) {
 	this.position = new BLUR.Vector(0,0,0);
 
 	this.dimensions = [p1,p2,p3,p4];
-	this.material = new BLUR.RGBColour( 255,255,255,1 );
+	this.material = new BLUR.BasicColorMaterial( new BLUR.Color(255,255,255),1 );
 
 	this.rotateY = function(angle) {
 		var temp_p1 = new BLUR.Vector(this.dimensions[0].x, this.dimensions[0].y, this.dimensions[0].z);
@@ -43,3 +43,6 @@ BLUR.Plane = function( p1, p2, p3, p4 ) {
 
 	this.type = 'BLUR.Plane';
 };
+
+BLUR.Plane.prototype = new BLUR.Object3D();
+BLUR.Plane.prototype.constructor = BLUR.Plane;

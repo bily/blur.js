@@ -23,7 +23,7 @@ BLUR.Vector = function(x,y,z) {
 	};
 
 	this.rotateX = function ( angle ) {
-		console.log('Vector.rotateY - ' + angle);
+		//console.log('Vector.rotateY - ' + angle);
 
 		var tempY = this.y;
 		var tempZ = this.z;
